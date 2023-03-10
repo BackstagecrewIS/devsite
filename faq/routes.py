@@ -5,4 +5,4 @@ from faq.models import Category, Question
 
 @app.route("/")
 def home():
-    return render_template("base.html")
+    return render_template("faq.html")
