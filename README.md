@@ -175,13 +175,13 @@ Navigation and use of the website must be intuitive allowing the user to be able
 
 ## Frameworks, Libraries & Programs Used
 
-[Bootstrap 4.4.1:](https://getbootstrap.com/docs/4.4/getting-started/introduction/)
+[Bootstrap 5.3.0](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 Bootstrap was used to assist with the responsiveness and styling of the website.
 
 [Google Fonts:](https://fonts.google.com/)
 Google fonts were used to import the 'Poppins' font into the style.css file which is used on all pages throughout the project.
 
-[jQuery:](https://en.wikipedia.org/wiki/JQuery) is used to make the modal function.
+[jQuery:](https://en.wikipedia.org/wiki/JQuery) is used for additional functions in Bootstrap function.
 
 [Git:](https://git-scm.com/) was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 
