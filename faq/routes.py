@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from faq import app, db
 from faq.models import Category, Question
 
@@ -17,4 +17,7 @@ def categories():
 def add_category():
     if request.method == "POST":
         category = Category(category_name=request.form.get("category_name"))
+        db.session.add(catgegory)
+        db.session.commit()
+        return redirect(url_for("categories"))
     return render_template("add_category.html")
