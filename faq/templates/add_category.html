@@ -2,21 +2,16 @@
 {% block content %}
 
 <h3>Add New Category</h3>
-<div>
+<div class="container-fluid">
     <form method="POST" action="{{ url_for('add_category') }}">
         <!-- category name -->
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="category-name" placeholder="Category Name">
-            <label for="category-name">Category Name</label>
-          </div>
-        <!-- submit button -->
-        <div class="row">
-            <div>
-                <button type="submit" class="btn btn-primary"">
-                    Add New Category <i class="fa-solid fa-plus-square right"></i>
-                </button>
-            </div>
+        <div class="form-floating mb-12">
+            <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Category Name" minlength="3" maxlength="25" required>
+            <label for="category_name">Category Name</label>
         </div>
+        <!-- submit button -->
+        <button type="submit" class=" form-control btn btn-primary btn-block">Add New Category <i class="fa-solid fa-plus-square right"></i>
+        </button>
     </form>
 </div>
 
