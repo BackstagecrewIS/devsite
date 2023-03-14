@@ -18,7 +18,7 @@
                     <h5 class="card-title text-center">{{ category.category_name }}</h5>
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" class="btn btn-warning uppercase wide-button">Edit</a>
+                            <a href="{{ url_for('edit_category', category_id=category.id) }}" class="btn btn-warning uppercase wide-button">Edit</a>
                         </div>
                         <div class="col-6">
                             <a href="#" class="btn btn-danger uppercase wide-button">Delete</a>
