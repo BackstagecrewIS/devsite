@@ -13,3 +13,13 @@ body {
   line-height: 60px;
   background-color: #f5f5f5;
 }
+
+.wide-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
