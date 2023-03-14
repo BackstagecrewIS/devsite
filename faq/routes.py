@@ -40,3 +40,17 @@ def delete_category(category_id):
     db.session.delete(category)
     db.session.commit()
     return redirect(url_for("categories"))
+
+
+@app.route("/add_question", methods=["GET", "POST"])
+def add_question():
+    if request.method == "POST":
+        question = Question(
+            question=request.form.get("question"),
+            answer="Coming Soon",
+            category_id=10
+        )
+        db.session.add(question)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("add_question.html")
