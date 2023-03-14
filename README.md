@@ -2,7 +2,7 @@
 
 [Link to the deployed site](# "Link to the site")
 
-An interface for handling frequently asked questions
+An interface for handling frequently asked questions on a website
 
 It is designed to be used on any device.
 
@@ -23,7 +23,7 @@ It is designed to be used on any device.
 * ### User Stories
   - #### First Time Visitor Goals
   
-    a. As a first time visitor, I want to be able to ask questions without having further instructions.
+    a. As a first time visitor, I want to be able to ask a question without needing further instructions.
   
     b. As a first time visitor, I want to be able to see if my question has already been answered.
     
@@ -38,7 +38,8 @@ It is designed to be used on any device.
 * Design Considerations
   - Colour Scheme
   
-  The colour scheme is the standard bootstrap colour scheme.
+  The colour scheme is the standard bootstrap colour scheme using white background and blue buttons.
+  Edit buttons will be yellow and delete buttons, red.
 
   The messages confirm to the user that their question has been submitted. These will be yellow text on a black background to differentiate them from the buttons
   
@@ -49,6 +50,7 @@ It is designed to be used on any device.
   - Imagery
   
     There are no images used in the site. It is simply a set form elements to submit and retrieve data from the database
+    The icons used are sourced from [Font Awesome](https://fontawesome.com/)
     
   - Wireframes
   
@@ -301,9 +303,9 @@ Click [Here](https://docs.github.com/en/get-started/quickstart/fork-a-repo) for 
 
 ## Credits
 
-Modal code sourced from [W3 Schools](https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp) and adapted to the requirements.
+Nav, Buttons, Cards, Modals Adapted from example code at [Bootstrap](https://getbootstrap.com/)
 
-https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp
+Icons sourced from [Font Awesome](https://fontawesome.com/)
 
 Thanks go to my mentor Narender Singh for advice and guidance.
 
