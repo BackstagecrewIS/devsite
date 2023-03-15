@@ -21,13 +21,35 @@
                             <a href="{{ url_for('edit_category', category_id=category.id) }}" class="btn btn-warning uppercase wide-button">Edit</a>
                         </div>
                         <div class="col-6">
-                            <a href="{{ url_for('delete_category', category_id=category.id) }}" class="btn btn-danger uppercase wide-button">Delete</a>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger uppercase wide-button" data-bs-toggle="modal" data-bs-target="#modal-{{ category.id }}">Delete</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-{{ category.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Category</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    Are you sure?
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url_for('delete_category', category_id=category.id) }}" class="btn btn-danger uppercase wide-button">Delete</a>
+                        <button type="button" class="btn btn-primary uppercase wide-button" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% endfor %}
+
     </div>
 </div>
 
