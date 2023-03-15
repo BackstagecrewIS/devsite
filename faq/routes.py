@@ -5,7 +5,8 @@ from faq.models import Category, Question
 
 @app.route("/")
 def home():
-    return render_template("faq.html")
+    questions = list(Question.query.order_by(Question.question).all())
+    return render_template("faq.html", questions=questions)
 
 
 @app.route("/categories")
