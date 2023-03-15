@@ -38,7 +38,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    Are you sure?
+                    <p>This will also remove any questions in the {{ category.category_name }} category</p>
+                    <p>Are you sure?</p>                    
                     </div>
                     <div class="modal-footer">
                         <a href="{{ url_for('delete_category', category_id=category.id) }}" class="btn btn-danger uppercase wide-button">Delete</a>
