@@ -5,8 +5,10 @@ from faq.models import Category, Question
 
 @app.route("/")
 def home():
-    questions = list(Question.query.order_by(Question.question).all())
-    return render_template("faq.html", questions=questions)
+    questions = list(Question.query.order_by(Question.category_id).all())
+    categories = list(Category.query.order_by(Category.id).all())
+    return render_template(
+        "faq.html", questions=questions, categories=categories)
 
 
 @app.route("/categories")
@@ -48,10 +50,23 @@ def add_question():
     if request.method == "POST":
         question = Question(
             question=request.form.get("question"),
-            answer="Coming Soon",
-            category_id=10
+            answer="We will answer soon",
+            category_id=0
         )
         db.session.add(question)
         db.session.commit()
         return redirect(url_for("home"))
     return render_template("add_question.html")
+
+
+@app.route("/answer_question/<int:question_id>", methods=["GET", "POST"])
+def answer_question(question_id):
+    question = Question.query.get_or_404(question_id)
+    categories = list(Category.query.order_by(Category.category_name).all())
+    if request.method == "POST":
+        question.question = request.form.get("question")
+        question.answer = request.form.get("answer")
+        question.category_id = int(request.form.get("category_id"))
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("answer_question.html", question=question, categories=categories)

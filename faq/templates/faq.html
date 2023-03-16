@@ -8,17 +8,18 @@
 </div>
 
 
-<div class="accordion" id="accordionExample">
+<div class="accordion" id="category-accordion">
   {% for question in questions %}
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{question.id}}" aria-expanded="true" aria-controls="collapseOne">
-        {{ question.question }}
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{question.id}}" aria-expanded="false" aria-controls="collapseOne">
+        {{ question.category }} - {{ question.question }}
       </button>
     </h2>
-    <div id="collapse-{{question.id}}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="collapse-{{question.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#category-accordion">
       <div class="accordion-body">
-        {{ question.answer }} {{ question.category }}
+        {{ question.answer }}
+        <a href="{{ url_for('answer_question', question_id=question.id) }}" class="btn btn-danger uppercase wide-button">Answer</a>
       </div>
     </div>
   </div>
