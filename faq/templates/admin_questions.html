@@ -30,6 +30,29 @@
                                     <div id="collapse-{{question.id}}" class="accordion-collapse collapse" aria-labelledby="heading-{{question.id}}" data-bs-parent="#question-accordion">
                                         <div class="accordion-body">
                                         {{ question.answer }}
+                                        <a href="{{ url_for('answer_question', question_id=question.id) }}" class="btn btn-warning uppercase">Answer</a>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger uppercase" data-bs-toggle="modal" data-bs-target="#modal-{{ question.id }}">Delete</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-{{ question.id }}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="ModalLabel">Delete Question</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <p>Delete this question</p>
+                                            <p>Are you sure?</p>                    
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="{{ url_for('delete_question', question_id=question.id) }}" class="btn btn-danger uppercase wide-button">Delete</a>
+                                                <button type="button" class="btn btn-primary uppercase wide-button" data-bs-dismiss="modal">Cancel</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

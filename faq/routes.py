@@ -69,4 +69,13 @@ def answer_question(question_id):
         question.category_id = int(request.form.get("category_id"))
         db.session.commit()
         return redirect(url_for("home"))
-    return render_template("answer_question.html", question=question, categories=categories)
+    return render_template(
+        "answer_question.html", question=question, categories=categories)
+
+
+@app.route("/delete_question/<int:question_id>")
+def delete_question(question_id):
+    question = Question.query.get_or_404(question_id)
+    db.session.delete(question)
+    db.session.commit()
+    return redirect(url_for("home"))
