@@ -305,6 +305,8 @@ Click [Here](https://docs.github.com/en/get-started/quickstart/fork-a-repo) for 
 
 Nav, Buttons, Cards, Modals Adapted from example code at [Bootstrap](https://getbootstrap.com/)
 
+Nested Accordion adapted from [CodePen](https://codepen.io/WinterSilence/pen/abpopXa)
+
 Icons sourced from [Font Awesome](https://fontawesome.com/)
 
 Thanks go to my mentor Narender Singh for advice and guidance.
