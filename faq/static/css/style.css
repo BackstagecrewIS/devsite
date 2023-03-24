@@ -24,3 +24,11 @@ body {
 .uppercase {
   text-transform: uppercase;
 }
+
+.login-form {
+  max-width: 75%;
+}
+
+.login-form .form-group, button, p {
+  margin-top: 15px;
+}

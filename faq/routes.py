@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from faq import app, db
 from faq.models import Category, Question
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.route("/")
@@ -9,6 +10,15 @@ def home():
     categories = list(Category.query.order_by(Category.id).all())
     return render_template(
         "faq.html", questions=questions, categories=categories)
+
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+@app.route("/terms")
+def terms():
+    return render_template("terms.html")
 
 
 @app.route("/categories")
