@@ -2,9 +2,11 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -29,6 +31,10 @@ body {
   max-width: 75%;
 }
 
-.login-form .form-group, button, p {
+.login-form .input-group, button, p {
   margin-top: 15px;
+}
+
+.form-check-input {
+  margin-right: 5px;
 }
