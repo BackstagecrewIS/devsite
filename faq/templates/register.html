@@ -6,7 +6,7 @@
             <p>Only registered users can post questions. Use the form below to create an account.</p>
             <div class="input-group">
                 <span class="input-group-text" id="username-label"><i class="fa-solid fa-user-plus"></i></span>
-                <input type="text" class="form-control" name="username" id="username" aria-describedby="username-label" aria-label="Username" placeholder="Enter Username">
+                <input type="text" class="form-control" name="username" id="username" minlength="5" maxlength="50" aria-describedby="username-label" aria-label="Username" placeholder="Enter Username">
             </div>
             <div class="input-group">
                 <span class="input-group-text" id="email-label"><i class="fa-solid fa-at"></i></span>
@@ -14,11 +14,11 @@
             </div>
             <div class="input-group">
                 <span class="input-group-text" id="pass1-label"><i class="fa-solid fa-key"></i></span>
-                <input type="password" class="form-control" name="password1" id="password1" aria-describedby="pass1-label" placeholder="Password">
+                <input type="password" class="form-control" name="password1" id="password1" minlength="8" maxlength="80" aria-describedby="pass1-label" placeholder="Password">
             </div>
             <div class="input-group">
                 <span class="input-group-text" id="pass2-label"><i class="fa-solid fa-key"></i></span>
-                <input type="password" class="form-control" name="password2" id="password2" aria-describedby="pass2-label" placeholder="Password">
+                <input type="password" class="form-control" name="password2" id="password2" minlength="8" maxlength="80" aria-describedby="pass2-label" placeholder="Password">
             </div>
             <div class="input-group form-check">
                 <input type="checkbox" class="form-check-input" name="terms" id="terms">

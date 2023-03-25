@@ -266,7 +266,14 @@ Friends and family members were asked to review the site and documentation to po
 
 ### Known Bugs
 
-Bug:
+Bug: Form data not being passed to the @app.route
+
+Cause: The form was built with `id` attributes but not `name` attributes
+
+Solution: Added `name` attributes to the form elements
+
+
+Bug: 
 
 Cause:
 

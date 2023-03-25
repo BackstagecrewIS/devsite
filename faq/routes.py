@@ -15,14 +15,14 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        username = request.form.get("username")
+        username = request.form.get("username").lower()
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
         email = request.form.get("email")
         terms = request.form.get("terms")
 
         if terms != 'on':
-            print ("Terms not accepted")
+            print("Terms not accepted")
 
         if password1 != password2:
             print("Passwords don't match")
@@ -30,9 +30,19 @@ def register():
         if terms and (password1 == password2):
             print("Everything OK")
 
-
-
         print(username, password1, password2, email, terms)
+
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            print("User already exists")
+
+        new_user = {
+            "username": request.form.get("username").lower(),
+            "password": request.form.get("password1"),
+            "email": request.form.get("email")
+        }
+
+        print(new_user)
 
     return render_template("register.html")
 
