@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from faq import app, db
-from faq.models import Category, Question
+from faq.models import Category, Question, User
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -14,6 +14,26 @@ def home():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
+        email = request.form.get("email")
+        terms = request.form.get("terms")
+
+        if terms != 'on':
+            print ("Terms not accepted")
+
+        if password1 != password2:
+            print("Passwords don't match")
+
+        if terms and (password1 == password2):
+            print("Everything OK")
+
+
+
+        print(username, password1, password2, email, terms)
+
     return render_template("register.html")
 
 
