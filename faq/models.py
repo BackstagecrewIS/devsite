@@ -27,3 +27,16 @@ class Question(db.Model):
         return "#{0} - Question: {1} | Answer: {2}".format(
             self.id, self.question, self.answer
         )
+
+
+class User(db.Model):
+    # schema for the Users model
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(210), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        # __repr__ to represent itself in the form of a string
+        return "#{0} - Username: {1} | Password: {2} | Email: {3}".format(
+            self.id, self.username, self.password, self.email)
