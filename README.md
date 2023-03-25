@@ -237,6 +237,21 @@ W3C CSS Validator - Results [link](https://jigsaw.w3.org/css-validator/validator
 
 ### Further Testing
 
+#### Testing the register function for valid entries
+While building the register function, I used conditional print statements to check that the inputs were valid before coding the functionality.
+
+
+
+`if terms != 'on':
+  print ("Terms not accepted")`
+
+`if password1 != password2:
+  print("Passwords don't match")`
+
+`if terms and (password1 == password2):
+  print("Everything OK")`
+
+
 MORE NEEDED IN THIS SECTION
 
 The Website was tested on Google Chrome on both a laptop and mobile phone for functionality
