@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash, session
 from faq import app, db
 from faq.models import Category, Question, User
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -22,27 +22,31 @@ def register():
         terms = request.form.get("terms")
 
         if terms != 'on':
-            print("Terms not accepted")
+            flash("You must agree to the Ts & Cs to register")
+            return render_template("register.html")
 
         if password1 != password2:
-            print("Passwords don't match")
-
-        if terms and (password1 == password2):
-            print("Everything OK")
-
-        print(username, password1, password2, email, terms)
+            flash("Passwords don't match")
+            return render_template("register.html")
 
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
-            print("User already exists")
+            flash("User already exists")
+            return render_template("register.html")
 
-        new_user = {
-            "username": request.form.get("username").lower(),
-            "password": request.form.get("password1"),
-            "email": request.form.get("email")
-        }
+        new_user = User(
+            username=request.form.get("username").lower(),
+            password=generate_password_hash(request.form.get("password1")),
+            email=request.form.get("email")
+        )
 
-        print(new_user)
+        session["user"] = request.form.get("username").lower()
+
+        db.session.add(new_user)
+        db.session.commit()
+        flash("Registration Successful")
+
+        return render_template("register.html")
 
     return render_template("register.html")
 

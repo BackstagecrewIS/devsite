@@ -28,13 +28,25 @@ body {
 }
 
 .login-form {
-  max-width: 75%;
+  max-width: 100%;
 }
 
 .login-form .input-group, button, p {
   margin-top: 15px;
 }
 
+.form-check {
+    margin-top: 15px;
+}
+
 .form-check-input {
-  margin-right: 5px;
+    border-color: black;
+    margin-right: 5px;
+}
+
+.flashes {
+    text-align: center;
+    line-height: 2;
+    background-color: black;
+    color: gold;
 }

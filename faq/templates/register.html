@@ -6,22 +6,28 @@
             <p>Only registered users can post questions. Use the form below to create an account.</p>
             <div class="input-group">
                 <span class="input-group-text" id="username-label"><i class="fa-solid fa-user-plus"></i></span>
-                <input type="text" class="form-control" name="username" id="username" minlength="5" maxlength="50" aria-describedby="username-label" aria-label="Username" placeholder="Enter Username">
+                <input type="text" class="form-control" name="username" id="username" minlength="5" maxlength="25" pattern="^[a-zA-Z0-9]{5,25}$" aria-describedby="username-label" aria-label="Username" placeholder="Enter Username" required>
+                <small id="usernameHelpBlock" class="form-text text-muted">
+                    Your username must be 5-25 characters long and contain letters and numbers only (no spaces).
+                  </small>
             </div>
             <div class="input-group">
                 <span class="input-group-text" id="email-label"><i class="fa-solid fa-at"></i></span>
-                <input type="email" class="form-control" name="email" id="email" aria-describedby="email-label" placeholder="Enter email">
+                <input type="email" class="form-control" name="email" id="email" aria-describedby="email-label" placeholder="Enter email" required>
             </div>
             <div class="input-group">
                 <span class="input-group-text" id="pass1-label"><i class="fa-solid fa-key"></i></span>
-                <input type="password" class="form-control" name="password1" id="password1" minlength="8" maxlength="80" aria-describedby="pass1-label" placeholder="Password">
+                <input type="password" class="form-control" name="password1" id="password1" minlength="8" maxlength="80" pattern="^[a-zA-Z0-9]{8,80}$" aria-describedby="pass1-label" placeholder="Password" required>
             </div>
             <div class="input-group">
                 <span class="input-group-text" id="pass2-label"><i class="fa-solid fa-key"></i></span>
-                <input type="password" class="form-control" name="password2" id="password2" minlength="8" maxlength="80" aria-describedby="pass2-label" placeholder="Password">
+                <input type="password" class="form-control" name="password2" id="password2" minlength="8" maxlength="80" aria-describedby="pass2-label" placeholder="Password" required>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                    Your password must be 8-80 characters long, contain letters and numbers, special characters and must not contain spaces or emoji.
+                  </small>
             </div>
-            <div class="input-group form-check">
-                <input type="checkbox" class="form-check-input" name="terms" id="terms">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="terms" id="terms" required>
                 <label class="form-check-label" for="terms">I agree to the site <a href="#" data-bs-toggle="modal" data-bs-target="#terms-modal">terms and conditions</a></label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
