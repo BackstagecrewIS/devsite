@@ -9,7 +9,7 @@ def home():
     questions = list(Question.query.order_by(Question.category_id).all())
     categories = list(Category.query.order_by(Category.id).all())
     return render_template(
-        "faq.html", questions=questions, categories=categories)
+        "main.html", questions=questions, categories=categories)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -20,39 +20,52 @@ def register():
         password2 = request.form.get("password2")
         email = request.form.get("email")
         terms = request.form.get("terms")
-
+        # Terms & Conditions Checkbox ticked
         if terms != 'on':
             flash("You must agree to the Ts & Cs to register")
             return render_template("register.html")
-
+        # Passwords both match
         if password1 != password2:
             flash("Passwords don't match")
             return render_template("register.html")
-
+        # Chech if user already exists
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash("User already exists")
             return render_template("register.html")
-
+        # If all tests passed, create new user
         new_user = User(
             username=request.form.get("username").lower(),
             password=generate_password_hash(request.form.get("password1")),
             email=request.form.get("email")
         )
-
         session["user"] = request.form.get("username").lower()
-
         db.session.add(new_user)
         db.session.commit()
         flash("Registration Successful")
-
         return render_template("register.html")
-
     return render_template("register.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        existing_user = User.query.filter_by(
+            username=request.form.get("username").lower()).first()
+
+        if existing_user:
+            # flash("User Exists")
+            if check_password_hash(
+                    existing_user.password, request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(request.form.get("username")))
+            else:
+                flash("Incorrect username or password")
+                return render_template("login.html")
+        else:
+            flash("Incorrect username or password")
+            return render_template("login.html")
+
     return render_template("login.html")
 
 
@@ -95,7 +108,7 @@ def add_question():
     if request.method == "POST":
         question = Question(
             question=request.form.get("question"),
-            answer="We will answer soon",
+            answer="Awaiting answer",
             category_id=0
         )
         db.session.add(question)

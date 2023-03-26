@@ -2,6 +2,7 @@
 {% block content %}
 <div class="container-fluid row justify-content-center">
     <div class="col-lg-6 col-md-8 col-sm-12">
+    <h3>Register New User</h3>
         <form class="login-form" method="POST" action="{{ url_for('register') }}">
             <p>Only registered users can post questions. Use the form below to create an account.</p>
             <div class="input-group">
@@ -30,8 +31,15 @@
                 <input type="checkbox" class="form-check-input" name="terms" id="terms" required>
                 <label class="form-check-label" for="terms">I agree to the site <a href="#" data-bs-toggle="modal" data-bs-target="#terms-modal">terms and conditions</a></label>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="input-group">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
         </form>
+        <div>
+            <p class="center-align">
+                Already registered? <a href="{{ url_for('login') }}">Log in</a>
+            </p>
+        </div>
     </div>
 </div>
 

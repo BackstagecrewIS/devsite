@@ -23,23 +23,31 @@ It is designed to be used on any device.
 * ### User Stories
   - #### First Time Visitor Goals
   
-    a. As a first time visitor, I want to be able to ask a question without needing further instructions.
+    a. As a first time visitor, I would like to be able to register to ask questions.
   
-    b. As a first time visitor, I want to be able to see if my question has already been answered.
+    b. As a first time visitor, I want to be able to ask a question without needing further instructions.
+
+    c. As a first time visitor, I want to be able to see if my question has already been answered.
     
   - #### Returning Visitor Goals
   
     a. As a returning visitor, I want to be able to see if the question I asked, has been answered.
+
+    b. As a returning visitor, I want to be able to delete a question I asked
     
   - #### Frequent User Goals
   
     a. As a frequent user, I want to be able to browse the questions asked by others.
+
+    b. As a frequent user, I want to be able to delete my account and all questions I asked
     
 * Design Considerations
   - Colour Scheme
   
   The colour scheme is the standard bootstrap colour scheme using white background and blue buttons.
   Edit buttons will be yellow and delete buttons, red.
+
+  The error messages and confirmation in the registration process will be yellow text on a black background to differentiate them from the buttons
 
   The messages confirm to the user that their question has been submitted. These will be yellow text on a black background to differentiate them from the buttons
   
@@ -68,9 +76,9 @@ It is designed to be used on any device.
 **What are you aiming to achieve in the first place and for whom?**
 
 *** Users
-The site is designed to allow visitors to the site to ask questions of the site owner.
+The site is designed to allow visitors to the site to register and ask questions of the site owner.
 
-Users should be able to use the site without having further instruction.
+Users should be able to use the site without having additional instruction.
 
 The interface should be simple and work on a variety of devices.
 
@@ -79,7 +87,7 @@ Submitted questions should be visible to users with a default answer ("Awaiting 
 Submitted questions should be assigned to a pending question category until they are answered.
 
 ***Admin
-Once answered, questions should be assigned to an appropriate category to help users to find the answer to their question.
+Once answered, questions should be assigned to an appropriate category to help other users to find the answer to their question.
 
 The admin should be able to create and edit categories.
 
@@ -110,6 +118,10 @@ When a new question is submitted, it could send an email notification to an admi
 
 A future version could allow users to upvote answers to affect their position in the list
 
+Better user password options could include the option for special characters.
+
+A furture version could include a password recovery option using the user's email address.
+
 **Usability**
 Users are assumed to be accessing the site on a mobile device so the site should adopt a mobile first design.
 
@@ -124,15 +136,22 @@ For the initial build, this site will incorporate:
 
 **Future Development:**
 * An voting system to allow users to upvote answers.
+* Password recover option
 
 ### The structure plane:
 **How is the information structured and how is it logically grouped?**
 
 The information should be grouped by;
 
-* There is a basic website for the company and the FAQ is just one section of the site.
+* This is a small website for the company and the FAQ is just one section of the site.
+* The main FAQ page will contain the Accordion section with answer categories. 
+* A page will contain the Ask Question form.
+* A page will handle the user registration.
+* A page will handle the user management including account deletion
+* Terms and conditions for registration should be on a modal.
 
-* The main FAQ page will contain the question form along with the Accordion section with answer categories. 
+* Admin functions will only be visible to the admin user. 
+
 
 ### The skeleton plane:
 **How will our information be represented, and how will the user navigate to the information and the features?**

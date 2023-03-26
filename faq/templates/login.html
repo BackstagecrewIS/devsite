@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+        <h3>User Log In</h3>
+        <form class="login-form" method="POST" action="{{ url_for('login') }}">
+            <p>log in to your account.</p>
+            <div class="input-group">
+                <span class="input-group-text" id="username-label"><i class="fa-solid fa-user-cog"></i></span>
+                <input type="text" class="form-control" name="username" id="username" aria-describedby="username-label" aria-label="Username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="pass1-label"><i class="fa-solid fa-key"></i></span>
+                <input type="password" class="form-control" name="password" id="password" aria-describedby="pass1-label" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
+        </form>
+        <div>
+            <p class="center-align">
+                New here? <a href="{{ url_for( 'register' ) }}">Register account</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="terms-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="ModalLabel">Terms & Conditions</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+            <div class="modal-body">
+                <h2>Terms and conditions of use</h2>
+
+                <h3>Registration</h3>
+
+                <p>These terms and conditions apply between you, the User of this Website and Backstagecrew Internet Services. 
+                If you do not agree to be bound by these terms and conditions, you should not register.</p>
+
+                <div>
+                    <ol>
+                        <li>When you register on this Website, you will be asked to create a password, which you should keep confidential and not disclose or share with anyone.</li>
+                        <li>You may cancel your registration at any time by deleting your account. This will automatically delete any questions you have asked.</li>
+                        <li>We will not use your personal details for any purpose except registration and will delete all details on account deletion.</li>
+                    </ol>
+                </div>
+            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
