@@ -60,7 +60,7 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(
-                    url_for('profile', username=session['user']))
+                    url_for('profile', username=session["user"]))
             else:
                 flash("Incorrect username or password")
                 return render_template("login.html")
@@ -71,10 +71,21 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/logout")
+def logout():
+    flash("You have been logged out")
+    session.clear()
+    return redirect(url_for("home"))
+
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    username = session['user']
-    return render_template("profile.html", username=username)
+    if session["user"]:
+        flash("Username found")
+        username = session["user"]
+        return render_template("profile.html", username=username)
+
+    return render_template("login.html")
 
 
 @app.route("/categories")
