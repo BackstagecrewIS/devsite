@@ -28,7 +28,7 @@ def register():
         if password1 != password2:
             flash("Passwords don't match")
             return render_template("register.html")
-        # Chech if user already exists
+        # Check if user already exists
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash("User already exists")
@@ -43,7 +43,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         flash("Registration Successful")
-        return render_template("register.html")
+        return render_template("main.html")
     return render_template("register.html")
 
 
@@ -58,6 +58,7 @@ def login():
             if check_password_hash(
                     existing_user.password, request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
+                session["userid"] = existing_user.id
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(
                     url_for('profile', username=session["user"]))
@@ -81,9 +82,10 @@ def logout():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     if session["user"]:
-        flash("Username found")
-        username = session["user"]
-        return render_template("profile.html", username=username)
+        userid = session["userid"]
+        questions = list(Question.query.filter_by(asked_by=userid).all())
+        return render_template(
+            "profile.html", username=username, questions=questions)
 
     return render_template("login.html")
 
@@ -128,7 +130,8 @@ def add_question():
         question = Question(
             question=request.form.get("question"),
             answer="Awaiting answer",
-            category_id=0
+            category_id=0,
+            asked_by=request.form.get("userid")
         )
         db.session.add(question)
         db.session.commit()
