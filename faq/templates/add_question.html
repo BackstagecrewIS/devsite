@@ -9,6 +9,9 @@
             <textarea class="form-control" id="question" name="question" placeholder="Question" minlength="10" maxlength="250" required></textarea>
             <label for="question">Ask a Question</label>
         </div>
+        <div class="form-floating mb-12">
+            <input type="hidden" class="form-control" id="userid" name="userid" value="{{ session['userid'] }}">
+        </div>
         <!-- submit button -->
         <button type="submit" class=" form-control btn btn-primary wide-button">Submit Question <i class="fa-solid fa-question"></i>
         </button>

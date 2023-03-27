@@ -21,6 +21,9 @@ class Question(db.Model):
     category_id = db.Column(
         db.Integer, db.ForeignKey(
             "category.id", ondelete="CASCADE"), nullable=False)
+    asked_by = db.Column(
+        db.Integer, db.ForeignKey(
+            "user.id", ondelete="CASCADE"))
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
@@ -35,8 +38,12 @@ class User(db.Model):
     username = db.Column(db.String(25), nullable=False)
     password = db.Column(db.String(210), nullable=False)
     email = db.Column(db.String(50), nullable=False)
+    admin = db.Column(db.Boolean, default=False, nullable=False)
+    questions = db.relationship(
+        "Question", backref="user", cascade="all, delete", lazy=True)
 
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
-        return "#{0} - Username: {1} | Password: {2} | Email: {3}".format(
-            self.id, self.username, self.password, self.email)
+        return
+        "#{0} Username: {1} | Password: {2} | Email: {3} | Admin: {4}".format(
+            self.id, self.username, self.password, self.email, self.admin)
