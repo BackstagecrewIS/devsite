@@ -5,4 +5,47 @@
             <h3 class="center-align">{{ username }}'s' Profile</h3>
         </div>
     </div>
+
+    <div class="row container-fluid">
+        <h4>Your questions</h4>
+    </div>
+
+    {% for question in questions %}
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ question.question }}</h5>
+                            <p class="card-text">{{ question.answer }}</p>
+                        <div class="row">
+                            <div class="col-3 offset-9">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger uppercase wide-button" data-bs-toggle="modal" data-bs-target="#modal-{{ question.id }}">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                 
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-{{ question.id }}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalLabel">Delete Question</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <p>This will also remove this question and the answer from the site.</p>
+                    <p>Are you sure?</p>                    
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url_for('delete_question', question_id=question.id) }}" class="btn btn-danger uppercase wide-button">Delete</a>
+                        <button type="button" class="btn btn-primary uppercase wide-button" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}   
 {% endblock %}
