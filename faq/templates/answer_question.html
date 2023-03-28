@@ -11,13 +11,14 @@
         </div>
         <!-- answer -->
         <div class="form-floating mb-12">
-            <input type="text" class="form-control" id="answer" name="answer" value="{{ question.answer }}" placeholder="Answer" minlength="3" maxlength="250" required>
+            <input type="text" class="form-control" id="answer" name="answer" value="{{ question.answer }}" placeholder="Answer" minlength="3" maxlength="250" autofocus required>
             <label for="answer">Answer</label>
         </div>
 
         <div class="row">
-            <div class="form-control col-12">
-                <select id="category_id" name="category_id" class="validate" required>
+            <div class="col-12">
+                <label for="category_id">Category</label>
+                <select id="category_id" name="category_id" class="form-control validate" required>
                     <option value="" disabled>Choose Category</option>
                     {% for category in categories %}
                         {% if category == question.category %}
@@ -27,12 +28,11 @@
                         {% endif %}
                     {% endfor %}
                 </select>
-                <label for="category_id">Category</label>
             </div>
         </div>
 
         <!-- submit button -->
-        <button type="submit" class=" form-control btn btn-primary wide-button">Save Changes <i class="fa-solid fa-pen right"></i></button>
+        <button type="submit" class=" form-control btn btn-primary wide-button">Save Answer <i class="fa-solid fa-pen right"></i></button>
     </form>
 </div>
 

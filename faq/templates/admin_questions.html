@@ -3,67 +3,47 @@
 
 <div class="row">
   <div class="col">
-      <a href="{{ url_for('add_question') }}" class="btn btn-primary wide-button">Ask a Question <i class="fa-solid fa-question"></i></a>
+      <a href="{{ url_for('add_question') }}" class="btn btn-primary wide-button">Ask a Question 
+        <i class="fa-solid fa-question"></i></a>
   </div>
 </div>
-
-<div class="accordion" id="category-accordion">
-    <!-- category heading -->
-    {% for category in categories %}
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="heading-{{category.id}}">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{category.id}}" aria-expanded="false" aria-controls="collapseOne">
-                    {{ category.category_name }}
-                </button>
-            </h2>
-            <div id="collapse-{{category.id}}" class="accordion-collapse collapse" aria-labelledby="heading-{{category.id}}" data-bs-parent="#category-accordion">
-                <div class="accordion-body">
-                    <div class="accordion" id="question-accordion">
-                        {% for question in questions %}
-                            {% if question.category_id == category.id %}
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-{{question.id}}">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{question.id}}" aria-expanded="false" aria-controls="collapseOne">
-                                        {{ question.question }}
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-{{question.id}}" class="accordion-collapse collapse" aria-labelledby="heading-{{question.id}}" data-bs-parent="#question-accordion">
-                                        <div class="accordion-body">
-                                        {{ question.answer }}
-                                        <a href="{{ url_for('answer_question', question_id=question.id) }}" class="btn btn-warning uppercase">Answer</a>
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-danger uppercase" data-bs-toggle="modal" data-bs-target="#modal-{{ question.id }}">Delete</button>
-
-                                        </div>
+<!-- Outer Accordion Categories -->
+{% for category in categories %}
+<div class="accordion" id="categoryAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ category.id }}" aria-expanded="false" aria-controls="collapseOne">
+                {{ category.category_name }}
+            </button>
+        </h2>
+        <!-- Inner Accordion Category -->
+        <div id="collapse-{{ category.id }}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#categoryAccordion">
+            <div class="accordion-body">
+                <div class="accordion" id="sub-accordionExample">
+                    <!-- Inner Question -->
+                    {% for question in questions %}
+                        {% if question.category_id == category.id %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="sub-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sub-collapse-{{ question.id }}" aria-expanded="false" aria-controls="collapseOne">
+                                    {{ question.question }}
+                                </button>
+                            </h2>
+                            <div id="sub-collapse-{{ question.id }}" class="accordion-collapse collapse" aria-labelledby="sub-headingOne" data-bs-parent="#sub-accordionExample">
+                                <div class="accordion-body">
+                                    {{ question.answer }}
+                                    <div class="col-3 offset-9">
+                                        <a href="{{ url_for('answer_question', question_id=question.id) }}" class="btn btn-success uppercase wide-button">Answer</a>
                                     </div>
                                 </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modal-{{ question.id }}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="ModalLabel">Delete Question</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                            <p>Delete this question</p>
-                                            <p>Are you sure?</p>                    
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="{{ url_for('delete_question', question_id=question.id) }}" class="btn btn-danger uppercase wide-button">Delete</a>
-                                                <button type="button" class="btn btn-primary uppercase wide-button" data-bs-dismiss="modal">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
-
-
-            {% endfor %}
         </div>
-
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

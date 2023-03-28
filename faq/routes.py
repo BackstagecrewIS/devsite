@@ -6,10 +6,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 @app.route("/")
 def home():
+    return render_template(
+        "main.html")
+
+
+@app.route("/faq")
+def faq():
     questions = list(Question.query.order_by(Question.category_id).all())
     categories = list(Category.query.order_by(Category.id).all())
     return render_template(
-        "main.html", questions=questions, categories=categories)
+        "faq.html", questions=questions, categories=categories)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -131,12 +137,20 @@ def add_question():
             question=request.form.get("question"),
             answer="Awaiting answer",
             category_id=0,
-            asked_by=request.form.get("userid")
+            asked_by=int(session["userid"])
         )
         db.session.add(question)
         db.session.commit()
         return redirect(url_for("home"))
     return render_template("add_question.html")
+
+
+@app.route("/admin_questions")
+def admin_questions():
+    questions = list(Question.query.order_by(Question.category_id).all())
+    categories = list(Category.query.order_by(Category.id).all())
+    return render_template(
+        "admin_questions.html", questions=questions, categories=categories)
 
 
 @app.route("/answer_question/<int:question_id>", methods=["GET", "POST"])
@@ -148,7 +162,7 @@ def answer_question(question_id):
         question.answer = request.form.get("answer")
         question.category_id = int(request.form.get("category_id"))
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("admin_questions"))
     return render_template(
         "answer_question.html", question=question, categories=categories)
 
