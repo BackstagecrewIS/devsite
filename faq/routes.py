@@ -67,7 +67,7 @@ def login():
                 session["userid"] = existing_user.id
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(
-                    url_for('profile', username=session["user"]))
+                    url_for('home', username=session["user"]))
             else:
                 flash("Incorrect username or password")
                 return render_template("login.html")
