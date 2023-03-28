@@ -14,7 +14,7 @@ class Category(db.Model):
 
 
 class Question(db.Model):
-    # schema for the Task model
+    # schema for the Question model
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(250), nullable=False)
     answer = db.Column(db.Text, nullable=False)
