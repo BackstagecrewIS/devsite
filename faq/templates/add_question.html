@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-
 <h3>Ask a Question</h3>
 <div class="container-fluid">
     <form method="POST" action="{{ url_for('add_question') }}">
         <!-- question -->
         <div class="form-floating mb-12">
-            <textarea class="form-control" id="question" name="question" placeholder="Question" minlength="10" maxlength="250" required></textarea>
+            <textarea class="form-control" id="question" name="question" placeholder="Question" minlength="10" maxlength="250" autofocus required></textarea>
             <label for="question">Ask a Question</label>
-        </div>
-        <div class="form-floating mb-12">
-            <input type="hidden" class="form-control" id="userid" name="userid" value="{{ session['userid'] }}">
         </div>
         <!-- submit button -->
         <button type="submit" class=" form-control btn btn-primary wide-button">Submit Question <i class="fa-solid fa-question"></i>
