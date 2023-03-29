@@ -46,11 +46,10 @@ def register():
             email=request.form.get("email")
         )
         session["user"] = request.form.get("username").lower()
-        session["userid"] = existing_user.id
         db.session.add(new_user)
         db.session.commit()
         flash("Registration Successful")
-        return render_template("main.html")
+        return render_template("login.html")
     return render_template("register.html")
 
 
