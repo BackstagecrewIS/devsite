@@ -46,6 +46,7 @@ def register():
             email=request.form.get("email")
         )
         session["user"] = request.form.get("username").lower()
+        session["userid"] = existing_user.id
         db.session.add(new_user)
         db.session.commit()
         flash("Registration Successful")

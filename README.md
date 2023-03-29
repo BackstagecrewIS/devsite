@@ -301,6 +301,14 @@ Solution: Add a pop up modal if the usert is not logged in, to offer a redirect 
 
 ------------------------------------------------------------
 
+Bug: userid session not set on registration
+
+Cause: userid session set on login only
+
+Solution: copied userid session declaration into register route
+
+------------------------------------------------------------
+
 Bug: 
 
 Cause:
