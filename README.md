@@ -291,6 +291,15 @@ Cause: The form was built with `id` attributes but not `name` attributes
 
 Solution: Added `name` attributes to the form elements
 
+------------------------------------------------------------
+
+Bug: The 'Ask Question button on the faq page allowed anyone to ask a question without logging in
+
+Cause: All users need to be able to view the faq whether logged in or not.
+
+Solution: Add a pop up modal if the usert is not logged in, to offer a redirect to register page
+
+------------------------------------------------------------
 
 Bug: 
 

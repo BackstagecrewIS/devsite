@@ -1,12 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% if session["user"] %}
+    <div class="row">
+        <div class="col">
+            <a href="{{ url_for('add_question') }}" class="btn btn-primary wide-button">Ask a Question 
+                <i class="fa-solid fa-question"></i></a>
+        </div>
+    </div>
+{% else %}
 <div class="row">
-  <div class="col">
-      <a href="{{ url_for('add_question') }}" class="btn btn-primary wide-button">Ask a Question 
-        <i class="fa-solid fa-question"></i></a>
-  </div>
+    <div class="col">
+        <a href="{{ url_for('add_question') }}" class="btn btn-primary wide-button" data-bs-toggle="modal" data-bs-target="#modal">Ask a Question 
+            <i class="fa-solid fa-question"></i></a>
+    </div>
 </div>
+{% endif %}
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ModalLabel">Delete Category</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>You need to be logged in to ask a question</p>
+                <p>Do you need to log in or create an account?</p>                    
+            </div>
+            <div class="modal-footer">
+                <a href="{{ url_for( 'register' ) }}" class="btn btn-info uppercase wide-button">Register</a>
+                <a href="{{ url_for( 'login' ) }}" class="btn btn-info uppercase wide-button">Log In</a>
+                <a href="#" class="btn btn-danger uppercase wide-button" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Outer Accordion Categories -->
 {% for category in categories %}
 <div class="accordion" id="categoryAccordion">
