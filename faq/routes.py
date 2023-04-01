@@ -6,12 +6,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 @app.route("/")
 def home():
+    # Landing page
     return render_template(
         "main.html")
 
 
 @app.route("/faq")
 def faq():
+    # Get questions and answeres for faq page
     questions = list(Question.query.order_by(Question.category_id).all())
     categories = list(Category.query.order_by(Category.id).all())
     return render_template(
@@ -21,16 +23,17 @@ def faq():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        # get form responses
         username = request.form.get("username").lower()
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
         email = request.form.get("email")
         terms = request.form.get("terms")
-        # Terms & Conditions Checkbox ticked
+        # Check if Terms & Conditions Checkbox ticked
         if terms != 'on':
             flash("You must agree to the Ts & Cs to register")
             return render_template("register.html")
-        # Passwords both match
+        # Check both passwords match
         if password1 != password2:
             flash("Passwords don't match")
             return render_template("register.html")
@@ -45,28 +48,43 @@ def register():
             password=generate_password_hash(request.form.get("password1")),
             email=request.form.get("email")
         )
+        # Set user session
         session["user"] = request.form.get("username").lower()
+
+        # Commit to database
         db.session.add(new_user)
         db.session.commit()
         flash("Registration Successful")
+
+        # get user details back from database including id
         new_user = User.query.filter_by(username=username).first()
+
+        # Set userid session
         session["userid"] = new_user.id
-        return render_template("faq.html")
+        return redirect(url_for('home', username=session["user"]))
     return render_template("register.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
+        # Check user exists
         existing_user = User.query.filter_by(
             username=request.form.get("username").lower()).first()
 
         if existing_user:
-            # flash("User Exists")
+            # Check password hash against database
             if check_password_hash(
                     existing_user.password, request.form.get("password")):
+                # Set sessions
                 session["user"] = request.form.get("username").lower()
                 session["userid"] = existing_user.id
+
+                if existing_user.admin:
+                    session["admin"] = "True"
+                else:
+                    session["admin"] = "False"
+
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(
                     url_for('home', username=session["user"]))
@@ -76,7 +94,6 @@ def login():
         else:
             flash("Incorrect username or password")
             return render_template("login.html")
-
     return render_template("login.html")
 
 
@@ -144,7 +161,7 @@ def add_question():
 
         db.session.add(question)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("faq"))
     return render_template("add_question.html")
 
 
