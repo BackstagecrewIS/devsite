@@ -260,16 +260,19 @@ W3C CSS Validator - Results [link](https://jigsaw.w3.org/css-validator/validator
 #### Testing the register function for valid entries
 While building the register function, I used conditional print statements to check that the inputs were valid before coding the functionality.
 
+      `if terms != 'on':
+        print ("Terms not accepted")`
 
+      `if password1 != password2:
+        print("Passwords don't match")`
 
-`if terms != 'on':
-  print ("Terms not accepted")`
+      `if terms and (password1 == password2):
+        print("Everything OK")`
 
-`if password1 != password2:
-  print("Passwords don't match")`
+#### Testing the nav options.
 
-`if terms and (password1 == password2):
-  print("Everything OK")`
+All of the nav links were tested from each page for functionality before the conditionals were added to restrict access to users or admins as apppropriate.
+These links were then tested again from each page with logged in user and admin omly options 
 
 
 MORE NEEDED IN THIS SECTION
@@ -302,11 +305,19 @@ Solution: Add a pop up modal if the usert is not logged in, to offer a redirect 
 
 ------------------------------------------------------------
 
-Bug: userid session not set on registration
+Bug: userid session not set on registration enabling the user to ask a question without an id which throws an error
 
 Cause: userid session set on login only
 
-Solution: copied userid session declaration into register route
+Solution: added userid session declaration into register route
+
+------------------------------------------------------------
+
+Bug: User 'logged out' message not showing on logout
+
+Cause: Flashed messages are session variables and are cleared when the session is cleared.
+
+Solution: Call session.clear() before setting the flashed message
 
 ------------------------------------------------------------
 
