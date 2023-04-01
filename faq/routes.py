@@ -80,6 +80,7 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 session["userid"] = existing_user.id
 
+                # Check if administrator
                 if existing_user.admin:
                     session["admin"] = "True"
                 else:
@@ -99,8 +100,8 @@ def login():
 
 @app.route("/logout")
 def logout():
-    flash("You have been logged out")
     session.clear()
+    flash("You have been logged out")
     return redirect(url_for("home"))
 
 
