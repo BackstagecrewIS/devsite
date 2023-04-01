@@ -111,7 +111,8 @@ def profile(username):
         userid = session["userid"]
         questions = list(Question.query.filter_by(asked_by=userid).all())
         return render_template(
-            "profile.html", username=username, questions=questions)
+            "profile.html", questions=questions,
+            username=username, userid=userid)
 
     return render_template("login.html")
 
@@ -194,3 +195,12 @@ def delete_question(question_id):
     db.session.delete(question)
     db.session.commit()
     return redirect(url_for("home"))
+
+
+@app.route("/delete_account/<int:userid>")
+def delete_account(userid):
+    user = User.query.get_or_404(userid)
+    db.session.delete(user)
+    db.session.commit()
+    flash("Account Deleted")
+    return redirect(url_for("logout"))

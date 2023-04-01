@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+    <!-- Profile header -->
     <div class="container-fluid row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-12">
             <h3 class="center-align">{{ username }}'s Profile</h3>
@@ -28,7 +29,7 @@
             </div>                 
         </div>
 
-        <!-- Modal -->
+        <!-- Login Modal -->
         <div class="modal fade" id="modal-{{ question.id }}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -48,4 +49,29 @@
             </div>
         </div>
     {% endfor %}   
+
+    <!-- Delete account -->
+    <div>
+        <button type="button" class="btn btn-danger uppercase wide-button" data-bs-toggle="modal" data-bs-target="#AccountModal">Delete Account</button>
+    </div>
+
+    <!-- Delete Account Modal -->
+    <div class="modal fade" id="AccountModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="ModalLabel">Delete Account</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <p>This will also remove all your questions from our site.</p>
+                <p>Are you sure?</p>                    
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('delete_account', userid=userid) }}" class="btn btn-danger uppercase wide-button">Delete</a>
+                    <button type="button" class="btn btn-primary uppercase wide-button" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
