@@ -18,6 +18,11 @@ def faq():
         "faq.html", questions=questions, categories=categories)
 
 
+@app.route("/hero-image")
+def hero():
+    return render_template("templates/img/hero-image.jpg")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -49,6 +54,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         flash("Registration Successful")
+        flash(new_user)
         return render_template("login.html")
     return render_template("register.html")
 

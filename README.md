@@ -57,7 +57,8 @@ It is designed to be used on any device.
     
   - Imagery
   
-    There are no images used in the site. It is simply a set form elements to submit and retrieve data from the database
+    Hero Image from [Backstagecrew](https://backstagecrew.com)
+
     The icons used are sourced from [Font Awesome](https://fontawesome.com/)
     
   - Wireframes
@@ -213,7 +214,7 @@ Balsamiq was used to create the wireframes during the design process.
 
 ## Image Credits
 
-No images are used
+Hero Image from [Backstagecrew](https://backstagecrew.com)
 
 [Back to Index](#table-of-contents)
 
@@ -364,6 +365,10 @@ Click [Here](https://docs.github.com/en/get-started/quickstart/fork-a-repo) for 
 Nav, Buttons, Cards, Modals Adapted from example code at [Bootstrap](https://getbootstrap.com/)
 
 Nested Accordion adapted from [CodePen](https://codepen.io/WinterSilence/pen/abpopXa)
+
+Hero image CSS adapted from [W3Schools](https://www.w3schools.com/howto/howto_css_hero_image.asp)
+
+Hero Image from [Backstagecrew](https://backstagecrew.com)
 
 Icons sourced from [Font Awesome](https://fontawesome.com/)
 
