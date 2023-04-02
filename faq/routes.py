@@ -60,8 +60,8 @@ def register():
         existing_user = User.query.filter_by(username=username).first()
         admin_check = User.query.filter_by(admin=True).first()
 
+        # Check for admin user, if not make this used admin
         if admin_check:
-            flash("Admin exists")
             admin_user = False
         else:
             flash("This user will be admin")

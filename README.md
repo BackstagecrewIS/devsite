@@ -1,12 +1,10 @@
 <h1 align="center">Frequently Asked Questions</h1>
 
-[Link to the deployed site](# "Link to the site")
+[Link to the deployed site](https://app-faq.herokuapp.com "Link to the site")
 
 An interface for handling frequently asked questions on a website
 
 It is designed to be used on any device.
-
-![The Site](Link "FAQ Site")
 
 ## Table of Contents
 
@@ -47,9 +45,9 @@ It is designed to be used on any device.
   The colour scheme is the standard bootstrap colour scheme using white background and blue buttons.
   Edit buttons will be yellow and delete buttons, red.
 
-  The error messages and confirmation in the registration process will be yellow text on a black background to differentiate them from the buttons
+  Messages will be yellow text on a black background to make them more visible from the rest of the content
 
-  The messages confirm to the user that their question has been submitted. These will be yellow text on a black background to differentiate them from the buttons
+  Messages will be used to confirm any actions by the user
   
   - Typography
     
@@ -287,7 +285,7 @@ A large amount of manual testing was done to ensure that the game functions corr
 
 Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
 
-### Known Bugs
+### Solved Bugs
 
 Bug: Form data not being passed to the @app.route
 
@@ -325,7 +323,7 @@ Bug: Unable to add questions on initial deployment.
 
 Cause: New questions assigned to category-name 'Unanswered' with category.id '0'. Category doesn't exist on creation
 
-Solution: Add conditional in categories route to check id category exists and add if not
+Solution: Add conditional in categories route to check category.id[0] exists and add if not create it
 
 ------------------------------------------------------------
 
@@ -333,10 +331,12 @@ Bug: No way to create first user as admin.
 
 Cause: All users are created as non-admin by default
 
-Solution: Automatically create first user as admin
+Solution: Check if admin exists and if not, add first user as admin on registration
 
 
 [Back to Index](#table-of-contents)
+
+### Unsolved Bugs
 
 ## Deployment
 
