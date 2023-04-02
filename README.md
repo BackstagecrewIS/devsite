@@ -321,11 +321,19 @@ Solution: Call session.clear() before setting the flashed message
 
 ------------------------------------------------------------
 
-Bug: 
+Bug: Unable to add questions on initial deployment.
 
-Cause:
+Cause: New questions assigned to category-name 'Unanswered' with category.id '0'. Category doesn't exist on creation
 
-Solution:
+Solution: Add conditional in categories route to check id category exists and add if not
+
+------------------------------------------------------------
+
+Bug: No way to create first user as admin.
+
+Cause: All users are created as non-admin by default
+
+Solution: Automatically create first user as admin
 
 
 [Back to Index](#table-of-contents)

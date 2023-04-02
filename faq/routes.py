@@ -138,6 +138,15 @@ def profile(username):
 
 @app.route("/categories")
 def categories():
+    if Category.query.filter_by(id=0).first():
+        categories = list(
+            Category.query.order_by(Category.category_name).all())
+    else:
+        flash("First Category Populated")
+        initialise = Category(id=0, category_name="Admin")
+        db.session.add(initialise)
+        db.session.commit()
+
     categories = list(Category.query.order_by(Category.category_name).all())
     return render_template("categories.html", categories=categories)
 
