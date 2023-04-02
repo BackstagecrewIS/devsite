@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-12">
+    <h3>Your message</h3>
+        <form class="login-form" method="POST" action="{{ url_for('contact') }}">
+            <p>Thank you for contacting us. We will be in touch shortly.</p>
+            <div class="input-group">
+                <span class="input-group-text" id="name-label"><i class="fa-solid fa-user"></i></span>
+                <input type="text" class="form-control" name="name" id="name" aria-describedby="username-label" aria-label="Name" value="{{ name }}" readonly>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="email-label"><i class="fa-solid fa-at"></i></span>
+                <input type="email" class="form-control" name="email" id="email" aria-describedby="email-label" value="{{ email }}" readonly>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="phone-label"><i class="fa-solid fa-phone"></i></span>
+                <input type="tel" class="form-control" name="phone" id="phone" aria-describedby="phone-label" value="{{ phone }}" readonly>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="message-label"><i class="fa-solid fa-message"></i></span>
+                <textarea class="form-control" id="message" name="message" placeholder="Message" readonly>{{ message }}</textarea>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

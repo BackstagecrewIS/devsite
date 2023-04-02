@@ -20,6 +20,25 @@ def faq():
         "faq.html", questions=questions, categories=categories)
 
 
+# Contact Form
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        flash("Thanks {}, we have received your message!".format(
+            request.form.get("name")))
+        name = request.form.get("name")
+        email = request.form.get("email")
+        phone = request.form.get("phone")
+        message = request.form.get("message")
+        return render_template("thanks.html",
+                               name=name,
+                               email=email,
+                               phone=phone,
+                               message=message)
+    return render_template(
+        "contact.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
