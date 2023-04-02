@@ -58,6 +58,15 @@ def register():
             return render_template("register.html")
         # Check if user already exists
         existing_user = User.query.filter_by(username=username).first()
+        admin_check = User.query.filter_by(admin=True).first()
+
+        if admin_check:
+            flash("Admin exists")
+            admin_user = False
+        else:
+            flash("This user will be admin")
+            admin_user = True
+
         if existing_user:
             flash("User already exists")
             return render_template("register.html")
@@ -65,7 +74,8 @@ def register():
         new_user = User(
             username=request.form.get("username").lower(),
             password=generate_password_hash(request.form.get("password1")),
-            email=request.form.get("email")
+            email=request.form.get("email"),
+            admin=admin_user
         )
         # Set user session
         session["user"] = request.form.get("username").lower()
@@ -80,6 +90,11 @@ def register():
 
         # Set userid session
         session["userid"] = new_user.id
+        if admin_user is True:
+            session["admin"] = "True"
+        else:
+            session["admin"] = "False"
+
         return redirect(url_for('home', username=session["user"]))
     return render_template("register.html")
 
@@ -143,7 +158,7 @@ def categories():
             Category.query.order_by(Category.category_name).all())
     else:
         flash("First Category Populated")
-        initialise = Category(id=0, category_name="Admin")
+        initialise = Category(id=0, category_name="Unanswered")
         db.session.add(initialise)
         db.session.commit()
 
